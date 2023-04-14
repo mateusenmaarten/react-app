@@ -1,18 +1,33 @@
-import ListGroup from "./components/ListGroup";
-
-const items = ["New York", "San Fransico", "Tokyo"];
-const handleSelectItem = (item: string) => {
-  console.log(item);
-};
+import { useState } from "react";
+import Alert from "./components/Alert";
+import Button from "./components/Button";
+import Like from "./components/Like";
 
 function App() {
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [likeColor, setLikeColor] = useState("white");
+
   return (
     <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
-      />
+      {alertVisible && (
+        <Alert onClose={() => setAlertVisible(false)}>
+          Hello <span>World</span>
+        </Alert>
+      )}
+
+      <Button
+        onClick={() => {
+          setAlertVisible(true);
+        }}
+        color="danger"
+      >
+        Click Me!
+      </Button>
+      <Like
+        onClick={() => {
+          console.log("Liked");
+        }}
+      ></Like>
     </div>
   );
 }
